@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "baseUrl": "src",
+    "paths": { "@/*": ["*"] }
+  },
+  "include": ["src"]
+}

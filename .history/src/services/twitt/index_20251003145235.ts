@@ -19,9 +19,8 @@ export const twittListService = async () => {
   }
 };
 export const twittGetItemService = async (id: string) => {
-  console.log("ii", id);
   try {
-    const { data } = await AxiosInstance.get(`/tweet/${id}`);
+    const { data } = await AxiosInstance.get(`"/tweet"/${id}`);
     return data;
   } catch (err) {
     throw err as AxiosError;

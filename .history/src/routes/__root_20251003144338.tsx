@@ -10,9 +10,9 @@ export const Route = createRootRouteWithContext<{
   component: () => {
     return (
       <>
-        <Header />
         <Outlet />
         <Toaster duration={5000} />
+        <Header />
         {import.meta.env.MODE === "development" && (
           <>
             <ReactQueryDevtools buttonPosition="bottom-left" />

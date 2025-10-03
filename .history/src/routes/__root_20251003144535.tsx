@@ -10,6 +10,7 @@ export const Route = createRootRouteWithContext<{
   component: () => {
     return (
       <>
+        {" "}
         <Header />
         <Outlet />
         <Toaster duration={5000} />

@@ -44,12 +44,12 @@ export default function TwittCard({ data, isLoading }: TwittCardProps) {
 
           <CardContent className="pr-6 pl-6 flex">
             <span className="text-base">{twitt.description}</span>
-            <Button
+            {/* <Button
               variant="link"
               className="flex items-center pb-3 text-gray-200 "
             >
               <Edit className="w-4 h-4" />
-            </Button>
+            </Button> */}
           </CardContent>
         </Card>
       ))}

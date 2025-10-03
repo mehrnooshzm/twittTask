@@ -18,10 +18,10 @@ export default function TwittCard({ data, isLoading }: TwittCardProps) {
   if (!data || data.length === 0) {
     return <span className="text-center block mt-4">No twitts found.</span>;
   }
-  const sortedData = sortedByLatest(data, "updatedAt");
+
   return (
     <div className="flex flex-col gap-4">
-      {sortedData.map((twitt) => (
+      {sortedByLatest(data).map((twitt) => (
         <Card
           key={twitt?._id}
           className="w-[600px] mx-auto bg-white rounded-xl shadow-md overflow-hidden"

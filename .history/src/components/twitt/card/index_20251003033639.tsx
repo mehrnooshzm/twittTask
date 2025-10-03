@@ -3,8 +3,6 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import type { TwittFormValues } from "@/types/twitt";
 import { Edit } from "lucide-react";
-import dayjs from "@/utils/dayjs";
-import { sortedByLatest } from "@/utils/common";
 type TwittCardProps = {
   data: TwittFormValues[];
   isLoading: boolean;
@@ -18,12 +16,12 @@ export default function TwittCard({ data, isLoading }: TwittCardProps) {
   if (!data || data.length === 0) {
     return <span className="text-center block mt-4">No twitts found.</span>;
   }
-  const sortedData = sortedByLatest(data, "updatedAt");
+
   return (
     <div className="flex flex-col gap-4">
-      {sortedData.map((twitt) => (
+      {data.map((twitt, index) => (
         <Card
-          key={twitt?._id}
+          key={index}
           className="w-[600px] mx-auto bg-white rounded-xl shadow-md overflow-hidden"
         >
           <CardHeader className="flex justify-between items-center pr-6 pl-6">
@@ -37,9 +35,7 @@ export default function TwittCard({ data, isLoading }: TwittCardProps) {
                 <p className="text-gray-600">@{twitt.user}</p>
               </div>
             </div>
-            <div className="text-sm text-gray-500">
-              {dayjs(twitt.updatedAt).fromNow()}
-            </div>
+            <div className="text-sm text-gray-500">1h</div>
           </CardHeader>
 
           <CardContent className="pr-6 pl-6 flex">

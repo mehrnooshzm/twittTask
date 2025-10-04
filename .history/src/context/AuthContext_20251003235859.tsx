@@ -8,7 +8,6 @@ import {
 } from "react";
 import Cookies from "js-cookie";
 import { useQueryClient } from "@tanstack/react-query";
-import { TL_TWITT_LIST } from "@/reactQueryProvider/queryKeys";
 
 type AuthContextType = {
   token: string | null;
@@ -42,7 +41,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = () => {
     Cookies.remove("token");
     setTokenState(null);
-    queryClient.removeQueries({ queryKey: [TL_TWITT_LIST] });
+    queryClient.removeQueries({ queryKey: ["twitts"] });
   };
 
   return (

@@ -32,7 +32,7 @@ export default function TwittEdit({
     },
   });
 
-  const { mutate } = useEditTwitt(twitt, onOpenChange);
+  const { mutate } = useEditTwitt(onOpenChange, twitt);
 
   const onSubmit = handleSubmit((values) => mutate(values));
 

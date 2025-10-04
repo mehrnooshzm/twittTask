@@ -1,11 +1,17 @@
 import TwittCard from "@/components/ui/twittCard";
 import { sortedByLatest } from "@/utils/common";
+import { useQuery } from "@tanstack/react-query";
+import { twittListService } from "@/services/twitt";
+import { TL_TWITT_LIST } from "@/reactQueryProvider/queryKeys";
+import type { TwittTypes } from "@/types/twitt";
 import { useNavigate } from "@tanstack/react-router";
 import { routeTwittView } from "@/utils/routePaths";
-import { useTwittList } from "@/hook/useTwittList";
 export default function TwittList() {
   const navigate = useNavigate();
-  const { data, isLoading } = useTwittList();
+  const { data, isLoading } = useQuery<TwittTypes[]>({
+    queryKey: [TL_TWITT_LIST],
+    queryFn: twittListService,
+  });
   if (isLoading) {
     return <span className="text-center block mt-4">Loading...</span>;
   }

@@ -15,7 +15,7 @@ export const twittUpdateService = async (
   payload: TwittFormValues
 ) => {
   try {
-    const { data } = await AxiosInstance.put(`/tweet/${id}`, payload);
+    const { data } = await AxiosInstance.post(`/tweet/${id}`, payload);
     return data;
   } catch (err) {
     throw err as AxiosError;

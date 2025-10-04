@@ -12,12 +12,22 @@ import { useMutation } from "@tanstack/react-query";
 import type { TwittResponse, TwittFormValues } from "@/types/twitt";
 import { twittCreateService } from "@/services/twitt";
 import { useForm } from "react-hook-form";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { maxTwittLength } from "@/utils/common";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "@tanstack/react-router";
+import { routeTwittView } from "@/routes/routePaths";
+import { TV_TWITT_VIEW } from "@/reactQueryProvider/queryKeys";
+import { twittGetItemService } from "@/services/twitt";
 export default function DialogDemo() {
   const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
+  const { id } = useParams({ from: routeTwittView });
+  const { data, isLoading } = useQuery({
+    queryKey: [TV_TWITT_VIEW, id],
+    queryFn: () => twittGetItemService(id),
+  });
   const { mutate } = useMutation<TwittResponse, Error, TwittFormValues>({
     mutationFn: (data: TwittFormValues) => {
       return twittCreateService(data);
@@ -33,7 +43,7 @@ export default function DialogDemo() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TwittFormValues>();
-
+  const max = 280;
   const onSubmit = (data: TwittFormValues) => {
     mutate(data);
   };
@@ -42,22 +52,31 @@ export default function DialogDemo() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button className="bg-[#3b82f6] hover:bg-[#2563eb] text-white">
-            Add Twitt
+            Edit Twitt
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <form onSubmit={handleSubmit(onSubmit)}>
             <DialogHeader>
-              <DialogTitle>Add Twitt</DialogTitle>
+              <DialogTitle>Edit Twitt</DialogTitle>
             </DialogHeader>
             <div className="grid gap-4 py-4">
+              <Input
+                id="username"
+                value={data?.title}
+                type="text"
+                {...register("title", {
+                  required: "title is required",
+                })}
+              />
               <Textarea
                 id="description"
+                value={data?.description}
                 {...register("description", {
                   required: "this field is required",
                   maxLength: {
-                    value: maxTwittLength,
-                    message: `maximum ${maxTwittLength} characters are allowed`,
+                    value: max,
+                    message: `maximum ${max} characters are allowed`,
                   },
                 })}
               />
@@ -68,15 +87,8 @@ export default function DialogDemo() {
               )}
             </div>
             <DialogFooter>
-              <Button
-                type="button"
-                variant="ghost"
-                onClick={() => setOpen(false)}
-              >
-                Cancel
-              </Button>
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Saving..." : "Save"}
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "isSubmitting..." : "Save changes"}
               </Button>
             </DialogFooter>
           </form>

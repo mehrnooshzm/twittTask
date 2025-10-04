@@ -28,7 +28,12 @@ export default function TwittView() {
   return (
     <div className="mt-4">
       <TwittCard twitt={data} showEditButton={true} onEditClick={onEditClick} />
-      <TwittEdit open={open} onOpenChange={setOpen} twitt={data} />
+      <TwittEdit
+        open={open}
+        onOpenChange={setOpen}
+        twitt={data}
+        key={data._id}
+      />
     </div>
   );
 }

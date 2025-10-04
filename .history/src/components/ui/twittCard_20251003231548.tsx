@@ -46,9 +46,7 @@ export default function TwittCard({
       <CardContent className="pr-6 pl-6 flex">
         <div className="text-base flex gap-1">
           <Moreless text={twitt.description} />
-          {showEditButton && (
-            <Edit className=" mt-2 h-3 w-3" onClick={onEditClick} />
-          )}
+          {showEditButton && <Edit onClick={onEditClick} />}
         </div>
       </CardContent>
     </Card>

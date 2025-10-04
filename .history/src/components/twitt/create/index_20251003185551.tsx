@@ -12,9 +12,9 @@ import { useMutation } from "@tanstack/react-query";
 import type { TwittResponse, TwittFormValues } from "@/types/twitt";
 import { twittCreateService } from "@/services/twitt";
 import { useForm } from "react-hook-form";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { maxTwittLength } from "@/utils/common";
 export default function DialogDemo() {
   const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
@@ -33,7 +33,7 @@ export default function DialogDemo() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TwittFormValues>();
-
+  const max = 280;
   const onSubmit = (data: TwittFormValues) => {
     mutate(data);
   };
@@ -51,13 +51,20 @@ export default function DialogDemo() {
               <DialogTitle>Add Twitt</DialogTitle>
             </DialogHeader>
             <div className="grid gap-4 py-4">
+              <Input
+                id="username"
+                type="text"
+                {...register("title", {
+                  required: "title is required",
+                })}
+              />
               <Textarea
                 id="description"
                 {...register("description", {
                   required: "this field is required",
                   maxLength: {
-                    value: maxTwittLength,
-                    message: `maximum ${maxTwittLength} characters are allowed`,
+                    value: max,
+                    message: `maximum ${max} characters are allowed`,
                   },
                 })}
               />
@@ -75,8 +82,8 @@ export default function DialogDemo() {
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Saving..." : "Save"}
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "isSubmitting..." : "Save changes"}
               </Button>
             </DialogFooter>
           </form>

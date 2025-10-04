@@ -8,4 +8,3 @@ export const sortedByLatest = <T, K extends keyof T>(
       new Date(String(a[field])).getTime()
   );
 };
-export const maxTwittLength = 140;

@@ -71,7 +71,7 @@ export default function DialogDemo() {
               <Button
                 type="button"
                 variant="ghost"
-                onClick={() => setOpen(false)}
+                onClick={() => onOpenChange(false)}
               >
                 Cancel
               </Button>

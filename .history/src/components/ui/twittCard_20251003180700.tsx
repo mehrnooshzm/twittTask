@@ -1,12 +1,12 @@
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import type { TwittTypes } from "@/types/twitt";
+import type { TwittFormValues } from "@/types/twitt";
 import dayjs from "@/utils/dayjs";
 import Moreless from "@/components/ui/moreless";
 import { cn } from "@/lib/utils";
 import { Edit } from "lucide-react";
 type TwittCardProps = {
-  twitt: TwittTypes;
+  twitt: TwittFormValues;
   onCardClick?: () => void;
   onEditClick?: () => void;
   showEditButton?: boolean;
@@ -44,10 +44,10 @@ export default function TwittCard({
       </CardHeader>
 
       <CardContent className="pr-6 pl-6 flex">
-        <div className="text-base flex gap-1">
+        <div className="text-base flex">
           <Moreless text={twitt.description} />
           {showEditButton && (
-            <Edit className=" mt-2 h-3 w-3" onClick={onEditClick} />
+            <Edit className="mr-2 h-7 w-6" onClick={onEditClick} />
           )}
         </div>
       </CardContent>

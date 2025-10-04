@@ -29,7 +29,6 @@ export default function TwittList() {
         <TwittCard
           twitt={twitt}
           onCardClick={() => goToTwittDetail(twitt?._id)}
-          key={twitt._id}
         />
       ))}
     </div>

@@ -158,6 +158,7 @@ export const Header = React.forwardRef<HTMLElement, Navbar01Props>(
                         <NavigationMenuItem key={index} className="w-full">
                           <button
                             onClick={() => {
+                              console.log("meh");
                               navigate({ to: link.href });
                             }}
                             className={cn(
@@ -167,7 +168,7 @@ export const Header = React.forwardRef<HTMLElement, Navbar01Props>(
                                 : "text-foreground/80"
                             )}
                           >
-                            {link.label}
+                            {link.label}99
                           </button>
                         </NavigationMenuItem>
                       ))}
@@ -185,7 +186,7 @@ export const Header = React.forwardRef<HTMLElement, Navbar01Props>(
                     {navigationLinks.map((link, index) => (
                       <NavigationMenuItem key={index}>
                         <button
-                          onClick={() => navigate({ to: link.href })}
+                          onClick={(e) => e.preventDefault()}
                           className={cn(
                             "group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer no-underline",
                             link.active

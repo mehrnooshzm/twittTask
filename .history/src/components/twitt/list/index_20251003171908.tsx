@@ -3,12 +3,12 @@ import { sortedByLatest } from "@/utils/common";
 import { useQuery } from "@tanstack/react-query";
 import { twittListService } from "@/services/twitt";
 import { TL_TWITT_LIST } from "@/reactQueryProvider/queryKeys";
-import type { TwittTypes } from "@/types/twitt";
+import type { TwittFormValues } from "@/types/twitt";
 import { useNavigate } from "@tanstack/react-router";
 import { routeTwittView } from "@/routes/routePaths";
 export default function TwittList() {
   const navigate = useNavigate();
-  const { data, isLoading } = useQuery<TwittTypes[]>({
+  const { data, isLoading } = useQuery<TwittFormValues[]>({
     queryKey: [TL_TWITT_LIST],
     queryFn: twittListService,
   });
@@ -29,7 +29,6 @@ export default function TwittList() {
         <TwittCard
           twitt={twitt}
           onCardClick={() => goToTwittDetail(twitt?._id)}
-          key={twitt._id}
         />
       ))}
     </div>

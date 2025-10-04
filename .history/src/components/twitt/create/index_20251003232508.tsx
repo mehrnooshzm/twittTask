@@ -75,8 +75,8 @@ export default function DialogDemo() {
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Saving..." : "Save"}
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "isSubmitting..." : "Save changes"}
               </Button>
             </DialogFooter>
           </form>

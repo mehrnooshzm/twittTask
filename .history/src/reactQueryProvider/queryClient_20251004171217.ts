@@ -1,4 +1,4 @@
-import { QueryClient } from "@tanstack/react-query";
+import { QueryCache, QueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
@@ -25,4 +25,16 @@ export const queryClient = new QueryClient({
       },
     },
   },
+  queryCache: new QueryCache({
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 401) {
+          // handle 401
+        }
+        if (error.response?.status === 500) {
+          // redirect("/500")
+        }
+      }
+    },
+  }),
 });

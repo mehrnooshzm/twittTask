@@ -27,11 +27,13 @@ export default function TwittCard({
       )}
       onClick={onCardClick}
     >
-      <CardHeader className="flex justify-between items-center pr-6 pl-6">
+      <CardHeader className="block lg:flex justify-between items-center pr-6 pl-6">
         <div className="flex space-x-4">
           <Avatar>
             <AvatarImage src="/placeholder-user.jpg" />
-            <AvatarFallback>U</AvatarFallback>
+            <AvatarFallback>
+              {twitt.user.username.charAt(0).toUpperCase()}
+            </AvatarFallback>
           </Avatar>
           <div className="text-sm">
             <p className="text-black leading-none">Username</p>

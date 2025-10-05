@@ -22,7 +22,7 @@ export default function TwittCard({
     <Card
       key={twitt?._id}
       className={cn(
-        "lg:w-[600px] w-full mx-auto bg-white rounded-xl shadow-md overflow-hidden",
+        "lg:w-[600px] w-fullmx-auto bg-white rounded-xl shadow-md overflow-hidden",
         onCardClick && "cursor-pointer"
       )}
       onClick={onCardClick}

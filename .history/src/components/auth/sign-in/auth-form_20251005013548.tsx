@@ -7,7 +7,10 @@ import { Label } from "@/components/ui/label";
 import { loginService } from "@/services/auth";
 import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "@tanstack/react-router";
-
+import {
+  useRedirectIfLoggedIn,
+  useRedirectIfNotLoggedIn,
+} from "@/hook/useRedirectIfLoggedIn";
 import type { LoginResponse, LoginFormValues } from "@/types/auth";
 
 export default function UserAuthForm() {
@@ -18,7 +21,7 @@ export default function UserAuthForm() {
   } = useForm<LoginFormValues>();
   const navigate = useNavigate();
   const { setToken } = useAuth();
-
+  useRedirectIfNotLoggedIn();
   const { mutate } = useMutation<LoginResponse, Error, LoginFormValues>({
     mutationFn: (data: LoginFormValues) => {
       return loginService(data);

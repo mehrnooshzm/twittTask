@@ -18,20 +18,17 @@ export default function ReadMore({
   return (
     <p>
       {displayedText}
-
+      {!open && "..."}
       {!open && (
-        <>
-          <span>...</span>
-          <span
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpen(true);
-            }}
-            className="text-blue-600 cursor-pointer ml-1"
-          >
-            more
-          </span>
-        </>
+        <span
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpen(true);
+          }}
+          className="text-blue-600 cursor-pointer ml-1"
+        >
+          more
+        </span>
       )}
     </p>
   );

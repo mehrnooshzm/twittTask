@@ -13,7 +13,7 @@ function RouteComponent() {
   const { token } = useAuth();
   return (
     <div>
-      <div className=" mx-auto flex  flex-col-reverse lg:flex-row  p-4 justify-center gap-4">
+      <div className=" mx-auto flex flex-col flex-col-reverse lg:flex-row  p-4 justify-center gap-4">
         <div className="pl-10">
           {token ? (
             <TwittList />

@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { TV_TWITT_VIEW } from "@/reactQueryProvider/queryKeys";
 import TwittEdit from "@/components/twitt/edit";
 import { useState } from "react";
-import { useRedirectIfNotLoggedIn } from "@/hook/useRedirectIfNotLoggedIn";
+import { useRedirectIfNotLoggedIn } from "@/hook/useRedirectIfLoggedIn";
 export default function TwittView() {
   useRedirectIfNotLoggedIn();
   const [open, setOpen] = useState(false);

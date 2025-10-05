@@ -33,7 +33,7 @@ export default function DialogDemo() {
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="bg-[#3b82f6] hover:bg-[#2563eb] text-white sticky top-[70px]">
+          <Button className="bg-[#3b82f6] hover:bg-[#2563eb] text-white sticky top-16">
             Add Twitt
           </Button>
         </DialogTrigger>

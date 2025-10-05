@@ -43,6 +43,7 @@ export default function TwittList() {
   if (isLoading) {
     return <span className="text-center block mt-4">Loading...</span>;
   }
+  console.log("data", data);
 
   if (!data || data.length === 0) {
     return (

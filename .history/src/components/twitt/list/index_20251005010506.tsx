@@ -88,7 +88,7 @@ export default function TwittList() {
         ></span>
       )}
 
-      <div ref={loadingTarget} className="mt-[5rem]"></div>
+      <div ref={loadingTarget} className="mt-[10rem]"></div>
     </div>
   );
 }

@@ -15,12 +15,10 @@ export const useTwittList = () => {
           lastPageParam * pageSize < total ? lastPageParam + 1 : undefined;
         return nextPage;
       },
-
-      select: (data) => data.pages.flatMap((p) => p.list),
     });
-
+  const flatData = data?.pages.flatMap((p) => p.list) ?? [];
   return {
-    data,
+    data: flatData,
     isLoading,
     fetchNextPage,
     hasNextPage,

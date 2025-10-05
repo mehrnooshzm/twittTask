@@ -25,8 +25,8 @@ export const twittListService = async (pageParam: number) => {
   try {
     const { data } = await AxiosInstance.get("/tweet", {
       params: {
-        skip: pageParam - 1,
-        limit: 4,
+        skip: pageParam,
+        limit: 5,
       },
     });
     return data;
@@ -35,6 +35,7 @@ export const twittListService = async (pageParam: number) => {
   }
 };
 export const twittGetItemService = async (id: string) => {
+  console.log("ii", id);
   try {
     const { data } = await AxiosInstance.get(`/tweet/${id}`);
     return data;

@@ -8,15 +8,16 @@ export const useTwittList = () => {
       queryKey: [TL_TWITT_LIST],
       initialPageParam: 1,
       queryFn: ({ pageParam }) => twittListService(pageParam),
-      getNextPageParam: (lastPage, allPages, lastPageParam) => {
-        const pageSize = lastPage.list.length;
-        const total = lastPage.total;
-        const nextPage =
-          lastPageParam * pageSize < total ? lastPageParam + 1 : undefined;
-        return nextPage;
+      getNextPageParam: function (lastPage, allPages, lastPageParam) {
+        console.log("lastPage", lastPage);
+        if (lastPage.next) {
+          return lastPageParam + 1;
+        } else {
+          return null;
+        }
       },
 
-      select: (data) => data.pages.flatMap((p) => p.list),
+      select: (data) => data.pages.flatMap((p) => p),
     });
 
   return {

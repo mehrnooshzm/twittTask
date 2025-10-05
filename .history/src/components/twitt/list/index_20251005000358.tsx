@@ -17,36 +17,32 @@ export default function TwittList() {
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useTwittList();
 
+  // 🌀 infinite scroll observer
   useEffect(() => {
+    if (!hasNextPage || !loadingTarget.current) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
-        if (hasNextPage && entries[0].isIntersecting) {
-          console.log("fetch next page");
+        if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
           fetchNextPage();
         }
       },
-      {
-        threshold: 1,
-      }
+      { threshold: 1 }
     );
 
-    if (loadingTarget.current) {
-      observer.observe(loadingTarget.current);
-    }
+    const target = loadingTarget.current;
+    observer.observe(target);
 
-    return () => {
-      if (loadingTarget.current) {
-        observer.unobserve(loadingTarget.current);
-      }
-    };
-  }, [loadingTarget, hasNextPage, fetchNextPage]);
+    return () => observer.unobserve(target);
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+  // 🕓 Loading
   if (isLoading) {
     return <span className="text-center block mt-4">Loading...</span>;
   }
-  console.log("data", data);
 
-  if (!data || data.length === 0) {
+  // 🚫 Empty state
+  if (data.length === 0) {
     return (
       <Empty className="border-1 text-shadow-blue-50">
         <EmptyHeader>
@@ -75,20 +71,16 @@ export default function TwittList() {
           key={twitt._id}
         />
       ))}
-      {hasNextPage && !isFetchingNextPage && (
-        <div className="flex justify-center mt-4 text-gray-400">
-          <span>Scroll down to load more</span>
-        </div>
-      )}
-      {isFetchingNextPage && (
-        <span
-          className={
-            "block mx-auto w-12 h-12 border-8 border-blue-700 rounded-full border-t-transparent animate-spin"
-          }
-        ></span>
-      )}
 
-      <div ref={loadingTarget} className="mt-[5rem]"></div>
+      {/* Infinite scroll target */}
+      <div
+        ref={loadingTarget}
+        className="h-10 flex justify-center items-center"
+      >
+        {isFetchingNextPage && (
+          <span className="text-sm text-muted-foreground">Loading more...</span>
+        )}
+      </div>
     </div>
   );
 }

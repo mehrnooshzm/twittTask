@@ -21,7 +21,6 @@ export default function TwittList() {
     const observer = new IntersectionObserver(
       (entries) => {
         if (hasNextPage && entries[0].isIntersecting) {
-          console.log("fetch next page");
           fetchNextPage();
         }
       },
@@ -75,20 +74,16 @@ export default function TwittList() {
           key={twitt._id}
         />
       ))}
-      {hasNextPage && !isFetchingNextPage && (
-        <div className="flex justify-center mt-4 text-gray-400">
-          <span>Scroll down to load more</span>
-        </div>
-      )}
-      {isFetchingNextPage && (
-        <span
-          className={
-            "block mx-auto w-12 h-12 border-8 border-blue-700 rounded-full border-t-transparent animate-spin"
-          }
-        ></span>
-      )}
 
-      <div ref={loadingTarget} className="mt-[5rem]"></div>
+      {/* Infinite scroll target */}
+      <div
+        ref={loadingTarget}
+        className="h-10 flex justify-center items-center"
+      >
+        {isFetchingNextPage && (
+          <span className="text-sm text-muted-foreground">Loading more...</span>
+        )}
+      </div>
     </div>
   );
 }

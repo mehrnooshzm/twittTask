@@ -75,11 +75,7 @@ export default function TwittList() {
           key={twitt._id}
         />
       ))}
-      {hasNextPage && !isFetchingNextPage && (
-        <div className="flex justify-center mt-4 text-gray-400">
-          <span>Scroll down to load more</span>
-        </div>
-      )}
+
       {isFetchingNextPage && (
         <span
           className={
@@ -88,7 +84,7 @@ export default function TwittList() {
         ></span>
       )}
 
-      <div ref={loadingTarget} className="mt-[5rem]"></div>
+      <div ref={loadingTarget} className="mt-[40rem]"></div>
     </div>
   );
 }

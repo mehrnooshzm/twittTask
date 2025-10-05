@@ -21,10 +21,10 @@ export default function TwittList() {
     return (
       <Empty className="border-1 text-shadow-blue-50">
         <EmptyHeader>
-          <EmptyTitle>No Twitts Yet</EmptyTitle>
+          <EmptyTitle>No Projects Yet</EmptyTitle>
           <EmptyDescription>
-            You have not created any twitt yet. Get started by creating your
-            first twitt.
+            You haven&apos;t created any projects yet. Get started by creating
+            your first project.
           </EmptyDescription>
         </EmptyHeader>
       </Empty>

@@ -3,13 +3,6 @@ import { sortedByLatest } from "@/utils/common";
 import { useNavigate } from "@tanstack/react-router";
 import { routeTwittView } from "@/utils/routePaths";
 import { useTwittList } from "@/hook/useTwittList";
-import {
-  Empty,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyTitle,
-} from "@/components/ui/empty";
-
 export default function TwittList() {
   const navigate = useNavigate();
   const { data, isLoading } = useTwittList();
@@ -18,17 +11,7 @@ export default function TwittList() {
   }
 
   if (!data || data.length === 0) {
-    return (
-      <Empty className="border-1 text-shadow-blue-50">
-        <EmptyHeader>
-          <EmptyTitle>No Twitts Yet</EmptyTitle>
-          <EmptyDescription>
-            You have not created any twitt yet. Get started by creating your
-            first twitt.
-          </EmptyDescription>
-        </EmptyHeader>
-      </Empty>
-    );
+    return <span className="text-center block mt-4">No twitts found.</span>;
   }
   const sortedData = sortedByLatest(data, "updatedAt");
   const goToTwittDetail = (id: string) => {

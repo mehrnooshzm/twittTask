@@ -3,13 +3,7 @@ import { sortedByLatest } from "@/utils/common";
 import { useNavigate } from "@tanstack/react-router";
 import { routeTwittView } from "@/utils/routePaths";
 import { useTwittList } from "@/hook/useTwittList";
-import {
-  Empty,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyTitle,
-} from "@/components/ui/empty";
-
+import { CardHeader } from "@/components/ui/card";
 export default function TwittList() {
   const navigate = useNavigate();
   const { data, isLoading } = useTwittList();
@@ -19,15 +13,9 @@ export default function TwittList() {
 
   if (!data || data.length === 0) {
     return (
-      <Empty className="border-1 text-shadow-blue-50">
-        <EmptyHeader>
-          <EmptyTitle>No Twitts Yet</EmptyTitle>
-          <EmptyDescription>
-            You have not created any twitt yet. Get started by creating your
-            first twitt.
-          </EmptyDescription>
-        </EmptyHeader>
-      </Empty>
+      <CardHeader className="flex justify-between items-center pr-6 pl-6">
+        No twitts found.
+      </CardHeader>
     );
   }
   const sortedData = sortedByLatest(data, "updatedAt");

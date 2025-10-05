@@ -5,16 +5,7 @@ import { toast } from "sonner";
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: (failureCount, error) => {
-        if (failureCount >= 0) return false;
-
-        return !(
-          error instanceof AxiosError &&
-          [401, 403].includes(error.response?.status ?? 0)
-        );
-      },
       refetchOnWindowFocus: false,
-      staleTime: 10 * 1000,
     },
     mutations: {
       onError: (error: unknown) => {

@@ -7,9 +7,10 @@ import {
   Empty,
   EmptyDescription,
   EmptyHeader,
+  EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
-
+import { IconCloud } from "@tabler/icons-react";
 export default function TwittList() {
   const navigate = useNavigate();
   const { data, isLoading } = useTwittList();
@@ -19,12 +20,15 @@ export default function TwittList() {
 
   if (!data || data.length === 0) {
     return (
-      <Empty className="border-1 text-shadow-blue-50">
+      <Empty>
         <EmptyHeader>
-          <EmptyTitle>No Twitts Yet</EmptyTitle>
+          <EmptyMedia variant="icon">
+            <IconCloud />
+          </EmptyMedia>
+          <EmptyTitle>No Projects Yet</EmptyTitle>
           <EmptyDescription>
-            You have not created any twitt yet. Get started by creating your
-            first twitt.
+            You haven&apos;t created any projects yet. Get started by creating
+            your first project.
           </EmptyDescription>
         </EmptyHeader>
       </Empty>

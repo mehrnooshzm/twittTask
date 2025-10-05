@@ -49,7 +49,7 @@ export default function TwittCard({
 
           {showEditButton && (
             <Edit
-              className="h-5 w-5 text-gray-300 hover:text-gray-200 cursor-pointer shrink-0"
+              className="h-3 w-3 text-gray-300 hover:text-gray-200 cursor-pointer shrink-0"
               onClick={(e) => {
                 e.stopPropagation();
                 onEditClick?.();

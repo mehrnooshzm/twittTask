@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import TwittList from "@/components/twitt/list";
 import TwittCreate from "@/components/twitt/create";
 import { useAuth } from "@/context/AuthContext";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
@@ -18,11 +18,15 @@ function RouteComponent() {
           {token ? (
             <TwittList />
           ) : (
-            <Alert variant="default">
-              <AlertDescription>
-                Please sign in to view and create twitts.
-              </AlertDescription>
-            </Alert>
+            <>
+              <Avatar>
+                <AvatarImage
+                  className="w-50 h-50 object-cover rounded-full mx-auto"
+                  src="https://feministeconomics.org/wp-content/uploads/2022/12/Twitter-Symbol-1024x576.png"
+                />
+              </Avatar>
+              Please sign in to view and create twitts.
+            </>
           )}
         </div>
         {token && <TwittCreate />}

@@ -35,6 +35,7 @@ export default function TwittCard({
               {twitt.user.username.charAt(0).toUpperCase()}
             </AvatarFallback>
           </Avatar>
+
           <div className="text-sm">
             <p className="text-black leading-none">Username</p>
             <p className="text-gray-600">@{twitt.user.username}</p>

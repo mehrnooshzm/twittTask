@@ -1,6 +1,7 @@
-import { QueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
+import { QueryCache, QueryClient } from "@tanstack/react-query";
+import Cookies from "js-cookie";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,4 +35,17 @@ export const queryClient = new QueryClient({
       },
     },
   },
+  queryCache: new QueryCache({
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 403) {
+          toast.error("Session expired!");
+          Cookies.remove("token");
+        }
+        if (error.response?.status === 500) {
+          toast.error("Internal Server Error!");
+        }
+      }
+    },
+  }),
 });

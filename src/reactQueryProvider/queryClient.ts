@@ -15,7 +15,7 @@ export const queryClient = new QueryClient({
         );
       },
       refetchOnWindowFocus: false,
-      staleTime: 10 * 1000,
+      staleTime: 1000,
     },
     mutations: {
       onError: (error: unknown) => {
